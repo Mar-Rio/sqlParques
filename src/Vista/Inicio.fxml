@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.InicioController">
+   <children>
+      <TextField fx:id="bdd" alignment="TOP_LEFT" layoutX="100.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="201.0" StackPane.alignment="TOP_CENTER">
+         <StackPane.margin>
+            <Insets top="30.0" />
+         </StackPane.margin>
+      </TextField>
+      <TextField fx:id="user" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" StackPane.alignment="TOP_CENTER">
+         <StackPane.margin>
+            <Insets top="80.0" />
+         </StackPane.margin>
+      </TextField>
+      <Label text="Contraseña" StackPane.alignment="CENTER_LEFT">
+         <StackPane.margin>
+            <Insets bottom="110.0" left="30.0" />
+         </StackPane.margin>
+      </Label>
+      <Label text="Nombre de usuario:" StackPane.alignment="TOP_LEFT">
+         <StackPane.margin>
+            <Insets left="30.0" top="80.0" />
+         </StackPane.margin>
+      </Label>
+      <Label text="Elija la base de datos:" StackPane.alignment="TOP_LEFT">
+         <StackPane.margin>
+            <Insets left="30.0" top="30.0" />
+         </StackPane.margin>
+      </Label>
+      <Button fx:id="boton" mnemonicParsing="false" onAction="#conectar" style="-fx-background-color: brown;" text="Conectar" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
+         <StackPane.margin>
+            <Insets bottom="50.0" left="50.0" />
+         </StackPane.margin>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <TextField fx:id="pwd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" StackPane.alignment="CENTER">
+         <StackPane.margin>
+            <Insets bottom="110.0" />
+         </StackPane.margin>
+      </TextField>
+      <Label fx:id="textoConexion" alignment="CENTER" disable="true" prefHeight="39.0" prefWidth="135.0" text="Conectado" textFill="#1be700" visible="false" StackPane.alignment="BOTTOM_RIGHT">
+         <StackPane.margin>
+            <Insets bottom="20.0" right="20.0" />
+         </StackPane.margin>
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</StackPane>
