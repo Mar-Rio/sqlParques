@@ -32,6 +32,8 @@ public class ListarController implements Initializable {
 
     private boolean conexion;
     private Comunidad comunidad;
+    private int indice;
+    private Gestion gestion;
 
     @FXML
     private Label textoConexion;
@@ -53,7 +55,19 @@ public class ListarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         textoConexion.setVisible(true);
-        InicioController.getBasededatos();       
+        InicioController.getBasededatos();   
+        gestion = new Gestion();
+        try {
+            gestion.listarComunidades();
+        } catch (SQLException ex) {
+           alerta("Error", ex.getMessage());
+        }
+        Comunidad mostrada = gestion.getComunidades().get(0);
+        campoComunidad.setText(String.valueOf(mostrada.getId()));
+        nombreComunidad.setText(mostrada.getComunidad());
+        indice = mostrada.getId();
+        
+        
     }
 
     private void alerta(String title, String contenido) {
@@ -65,17 +79,53 @@ public class ListarController implements Initializable {
 
     @FXML
     private void aUltimo(ActionEvent event) {
-    }
-
+         try {
+            gestion.listarComunidades();
+        } catch (SQLException ex) {
+           alerta("Error", ex.getMessage());
+        }
+         int tamanyo = gestion.getComunidades().size();
+         campoComunidad.setText(String.valueOf(gestion.getComunidades().get(tamanyo - 1).getId()));
+         nombreComunidad.setText(gestion.getComunidades().get(tamanyo - 1).getComunidad());
+         indice = tamanyo - 1;
+    }     
+       
+    
     @FXML
     private void avanzar(ActionEvent event) {
+         try {
+            gestion.listarComunidades();
+        } catch (SQLException ex) {
+           alerta("Error", ex.getMessage());
+        }
+         campoComunidad.setText(String.valueOf(gestion.getComunidades().get(++indice).getId()));
+         nombreComunidad.setText(gestion.getComunidades().get(++indice).getComunidad());
+         indice++;
     }
-
+       
+       
+    
     @FXML
     private void retroceder(ActionEvent event) {
+     try {
+            gestion.listarComunidades();
+        } catch (SQLException ex) {
+           alerta("Error", ex.getMessage());
+        }
+         campoComunidad.setText(String.valueOf(gestion.getComunidades().get(indice - 1).getId()));
+         nombreComunidad.setText(gestion.getComunidades().get(indice - 1).getComunidad());
+         indice--;
     }
 
     @FXML
     private void aPrimero(ActionEvent event) {
+         try {
+            gestion.listarComunidades();
+        } catch (SQLException ex) {
+           alerta("Error", ex.getMessage());
+        }
+         campoComunidad.setText(String.valueOf(gestion.getComunidades().get(0).getId()));
+         nombreComunidad.setText(gestion.getComunidades().get(0).getComunidad());
+         indice = 0;
     }
 }
