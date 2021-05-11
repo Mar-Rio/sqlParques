@@ -84,7 +84,7 @@ public class ElegirAccionController implements Initializable {
           Parent root = cargarOtraEscena("/Listar/Listar.fxml");
         Node nodoQueHaGeneradoEvento = (Node) event.getSource();
         Stage ventana = (Stage) nodoQueHaGeneradoEvento.getScene().getWindow();
-        ventana.setTitle("Insertar");
+        ventana.setTitle("Comunidades");
         ventana.setScene(new Scene(root));
     }
 }

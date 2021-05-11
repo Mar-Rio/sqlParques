@@ -22,9 +22,26 @@ public class Gestion {
             user,
             pwd;
     private List<Comunidad> comunidades;
+    private List<Parques> parques;
 
     public Connection getConn() {
         return conn;
+    }
+
+    public List<Comunidad> getComunidades() {
+        return comunidades;
+    }
+
+    public void setComunidades(List<Comunidad> comunidades) {
+        this.comunidades = comunidades;
+    }
+
+    public List<Parques> getParques() {
+        return parques;
+    }
+
+    public void setParques(List<Parques> parques) {
+        this.parques = parques;
     }
 
     public void setConn(Connection conn) {
@@ -83,14 +100,13 @@ public class Gestion {
         return borrado;
     }
 
-    public boolean listar() throws SQLException {
+    public boolean listarComunidades() throws SQLException {
         boolean listado = false;
         comunidades = new ArrayList<>();
         try (Connection cone = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + db + "?serverTimezone=UTC", user, pwd)) {
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM ?",
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM comunidad",
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
-            ps.setString(1, "Comunidad");
             try (ResultSet rs = ps.executeQuery();) {
                 while (rs.next()) {
                     Comunidad comunidad = new Comunidad();
@@ -105,5 +121,29 @@ public class Gestion {
             System.out.println(e.getErrorCode());
         }
         return listado;
+    }
+
+    public void listarParques() throws SQLException {
+        parques = new ArrayList<>();
+        try (Connection cone = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + db + "?serverTimezone=UTC", user, pwd)) {
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM parque",
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
+            try (ResultSet rs = ps.executeQuery();) {
+                while (rs.next()) {
+                    Parques parque = new Parques();
+                    parque.setId(rs.getString("id"));
+                    parque.setNombre(rs.getString("nombre"));
+                    parque.setExtension(rs.getString("extension"));
+                    parque.setIdComunidad(rs.getString("comunidad"));
+                    parques.add(parque);
+                }
+
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+                System.out.println(e.getErrorCode());
+            }
+
+        }
     }
 }
